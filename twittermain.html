@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<style>
+		
+/*		CSS Reset */
+		
+		html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video{
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{
+			display: block;
+		}
+		body{
+			line-height: 1;
+		}
+		ol, ul{
+			list-style: none;
+		}
+		blockquote, q{
+			quotes: none;
+		}
+		blockquote:before, blockquote:after, q:before, q:after{
+			content: '';
+			content: none;
+		}
+		table{
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+/*		Document Style */
+		
+		body{
+			font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+			font-feature-settings: "liga", "clig", "calt", "dlig", "ccmp", "frac", "ccmp", "ss05";
+			/* liga, clig: 일반 합자 */
+			/* calt: 문맥 대체(3x9 등) */
+			/* frac/sups/subs: 분수/위첨자/아래첨자 */
+			/* ccmp: 합성 문자 */
+			/* ss05: 한국어에 맞춘 말줄임표 */
+			/* salt, ss06: 향상된 가독성(1469Il 등) */
+			/* tnum: 고정폭 숫자 */
+			/* zero: 슬래시 0 */
+			/* ss08: 직선 스타일 3 */
+			/* ss02: 열린 스타일 4 */
+			/* ss01: 곧은 스타일 6, 9 */
+			font-size: 17px;
+			text-align: center;
+		}
+		p, li{
+			line-height: 120%;
+		}
+		p, ul{
+			margin-top: 10px;
+		}
+		a{
+			color: dodgerblue;
+			text-decoration: underline;
+		}
+		a:hover{
+			text-decoration: none;
+		}
+		a:active{
+			color: darkblue;
+		}
+		b{
+			font-weight: bold;
+		}
+		
+		.bgVideo{
+			position: absolute;
+			z-index: 1;
+			height: 100vh;
+			width: 100vw;
+			margin: 0;
+			margin: 0;
+		}
+		.bgVideo video{
+/*			filter: brightness(30%);*/
+			width: 100%;
+			height: auto;
+			min-height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+		.mainContAbove, .mainCont{
+			position: absolute;
+			z-index: 2;
+			width: 100vw;
+		}
+		.mainContAbove{
+			margin-top: 540px;
+			height: 400px;
+			background: linear-gradient(to bottom, #ffffff00, white);
+			display: block;
+		}
+		.mainCont{
+			background-color: white;
+			display: block;
+			margin-top: 940px;
+			padding-top: 100px;
+		}
+		.titleSvg{
+			position: absolute;
+			z-index: 3;
+			margin-top: 350px;
+/*			margin: 300px auto 0 auto;*/
+/*			display: inline-block;*/
+			text-align: center;
+			width: 100%;
+		}
+		.titleSvg img{
+			width: 500px;
+			display: inline-block;
+		}
+		@media screen and (max-width: 500px){
+			.mainContAbove{
+				margin-top: 350px;
+				height: 250px;
+			}
+			.mainCont{
+				display: block;
+				margin-top: 600px;
+			}
+			
+			p{
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			.titleSvg{
+				margin-top: 250px;
+				width: 100%;
+			}
+			.titleSvg img{
+				width: 80%;
+			}
+		}
+		
+		h2{
+			font-weight: 800;
+			font-size: 25px;
+			margin-top: 60px;
+			margin-bottom: 30px;
+/*			text-decoration: underline;*/
+		}
+		.small{
+			font-size: 14px;
+			color: silver;
+		}
+		.strike{
+			color: silver;
+			text-decoration: line-through;
+		}
+		.silver{
+			color: silver;
+		}
+		
+		@font-face{
+			src: url('https://tetr.io/res/font/hun2.ttf?v=6');
+			font-family: 'HUN';
+		}
+		.hun{
+			font-family: 'HUN';
+		}
+		#behindAccClick{
+			cursor: pointer;
+			text-decoration: underline;
+		}
+		#behindAccClick:hover{
+			text-decoration: none;
+		}
+		#behindAccClick:active{
+			color: silver;
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div class="bgVideo">
+		<video autoplay="autoplay" muted="muted" loop="loop" width="1920">
+			<source src="https://cdn.discordapp.com/attachments/707944758458318881/938048740105793566/bgvideo1.mp4" type="video/mp4">
+		</video>	
+	</div>
+	
+	<div class="titleSvg">
+		<img src="https://cdn.discordapp.com/attachments/707944758458318881/943437081865228308/twtmaint.svg" alt="Strode Twitter Main Tweet">
+	</div>
+	
+	<div class="mainContAbove"></div>
+	
+	<div class="mainCont">
+		
+		<h2>닉네임</h2>
+		<p><b>Strode</b></p>
+		<p><span class="small">a.k.a. Strode0496, (구)S7RODE</span><br>
+		<span class="small">읽는 법: 스트로드, 혹은 줄여서 스트님이라고 불러주시는 게 더 편해요!</span><br></p>
+
+		<h2>자기소개</h2>
+		<p>한국인, A형, 대학생, 남성, 오른손잡이</p>
+		<p>평발과 심한 근시를 제외하면<br>몸에 별다른 질병이나 장애를 가지고 있지 않습니다.</p>
+		<p>군미필자입니다. 2022년 11월에 갑니다... 징병제 죽어버려</p>
+		<p>흡연 절대 안 하고, 술 안 마시고, 커피도 안 마십니다.<br>흡연과 술은 제가 싫어서 안 합니다. <span class="strike">단, 운동도 안 합니다.</span></p>
+		<p>계절은 여름을 좋아합니다. 추운 거 질색이야...</p>
+		<p>좋아하는 연예인이나 가수는 딱히 없으며,<br>창작물에서의 최애캐는 테일즈런너의 <a href="https://namu.wiki/w/%EC%8B%9C%ED%98%B8(%ED%85%8C%EC%9D%BC%EC%A6%88%EB%9F%B0%EB%84%88)">시호</a> 캐릭터입니다.</p>
+		<p>하우스, 뉴에이지, 게임 OST 등 가사가 없는 음악을 즐겨 듣습니다.<br>그런데 오디오를 다룰 줄 안다거나 작곡에 재능이 있진 않습니다 :(</p>
+		<p>흰색, 파스텔 계열과 같이 밝은 색을 좋아합니다.</p>
+		<p>아무런 정당도 지지하고 있지 않으며, 무종교입니다.</p>
+		
+		<h2>트위터/서브컬처</h2>
+		<p><b id="behindAccClick">트위터 아이디:</b> <a href="https://twitter.com/Strode0496" style="font-feature-settings: 'zero', 'tnum';" target="_blank">@Strode0496</a></p>
+		<p id="behindAcc" style="display: none"><b>뒷계 아이디: </b><a href="https://twitter.com/Strode0496b" style="font-feature-settings: 'zero', 'tnum';" target="_blank">@Strode0496b</a><br><span class="small">바이오에서 볼 수 있듯 뒷계에서는 예민한 주제를 다소 다루니 팔로우 요청 시 주의해주세요!</span></p>
+		<script>
+			$("#behindAccClick").click(function(){
+				$("#behindAcc").slideToggle();
+			});
+		</script>
+		<p><b>트윗 유형:</b> RT, 마음, 인알, 멘션, 일상(사담, 그림 이야기, 게임 이야기<span class="strike">, 잡소리</span> 포함)</p>
+		<p><b>연성 유형:</b> 그림</p>
+		<p><b>지뢰:</b> 초면 무례, 성별 혐오와 관련 워딩 및 콘텐츠, 고어물 등</p>
+		<p><b>이별:</b> 언팔로우 및 팔로워 삭제, (심할 경우)차단<br><span class="small">지뢰를 직멘이나 탐라에 끌어들이는 게 아닌 이상 (교류가 없다는 등의 이유로)제가 먼저 이별 치는 일은 없습니다</span></p>
+		<p><span class="small">위의 '트위터 아이디' 텍스트를 클릭하면 뒷계 아이디가 뜹니다</span></p>
+		
+		<h2>플레이하는 게임</h2>
+		<p>위로 갈수록 자주 플레이하는 게임입니다</p>
+		<ul>
+			<li><b><a href="https://tr.game.onstove.com/index.asp" target="_blank">테일즈런너 / Tales Runner</a></b></li>
+			<li><b><a href="https://tetr.io/" target="_blank">테트리오 / TETR.IO</a></b></li>
+			<li><b><a href="http://limmers.io/" target="_blank">더플레이어 : 연주로 즐기는 음악 / The Player : Play The K-POP</a></b></li>
+			<li><b><a href="https://www.minecraft.net/ko-kr" target="_blank">마인크래프트 JE / Minecraft JE</a></b></li>
+			<li><a href="https://store.steampowered.com/app/977950/A_Dance_of_Fire_and_Ice/" target="_blank">불과 얼음의 춤 / A Dance of Fire and Ice</a></li>
+			<li><a href="http://bangdream.kakaogame.com/web/main.html" target="_blank">뱅드림! 걸즈 밴드 파티! / BanG Dream! Girls Band Party!</a></li>
+			<li><a href="https://play.google.com/store/apps/details?id=com.sopt.mafia42.client&hl=ko" target="_blank">마피아42 / Mafia42</a></li>
+			<li><a href="https://kkutu.co.kr/" target="_blank">끄투코리아 / kkutu.co.kr</a></li>
+		</ul>
+		<p>MMORPG와 같은 '하드코어 게임', 템빨 게임과 저는 통 맞지 않으며,<br>'캐주얼 게임', '음악 게임', 실력빨 게임을 좋아합니다.<br><span class="small">템빨 게임 안 좋아하는데 어떻게 테런에 정착했냐고요? 글쎄요 저도 신기해요...</span></p>
+		
+		<h2>테일즈런너</h2>
+		<p id="talesbookToggle" style="cursor: pointer; color: dodgerblue; text-decoration: underline;"><b>[테일즈북 이미지 펼치기/접기 (클릭)]</b></p>
+		<img src="https://blogfiles.pstatic.net/MjAyMTA5MTRfMTQ4/MDAxNjMxNjIyMzUxNTUz.Ts2j_Bucf6eiT2KbUriCWw6U7EbCWbn965iOEyJne50g.CAl41dZshIV8XuTza90JXZ2iGbgjzNmAZhEra1iPwN8g.GIF.josy1231/ezgif-6-d3d0c1c3f438.gif" alt="" style="display: none;" id="talesbook">
+		<script>
+			$("#talesbookToggle").click(function(){
+				$("#talesbook").fadeToggle();
+			});
+		</script>
+		<p><b>런너 닉네임: </b>Strode</p>
+		<p><b>레벨: </b>2022년 2월 기준 남색 갤럭시윙부츠(97레벨)</p>
+		<p><b>게임 플레이 시간: </b>2022년 2월 기준 6000+ 시간</p>
+		<p><b>길드: </b><span class="silver">무소속</span></p>
+		<p><b>접속 시간: </b>오후~새벽 내 랜덤</p>
+		<p><b>좋아하는 맵: </b>하드코어, 이벤트, 초 스피드 튜브맵<span class="strike">, 놀이터(좋아했었는데 사라짐...)</span></p>
+		<p><b>싫어하는 맵: </b>서바이벌<span class="silver">(문어/도마뱀 청년의 반항 제외, 공방에서의 분킬 때문에)</span>,<br>배탐<span class="silver">(지루해서)</span>, 닥터헬 카테고리 맵들<span class="silver">(잊혀진 등대섬 제외, 너무 어려워서)</span><br>기타 동트, 협동 등 웬만해서는 즐겜으로 종종 뜁니다</p>
+		<p>현질은 테런 시작하고 나서부터 지금까지 약 10만원 조금 넘게 했습니다.</p>
+		<p>부주 해주거나 구하지 않고 아이템 현금 거래(어경) 이용하지 않으며, 이용한 적도 없습니다.<br>욕심 없이 시간 되는 대로만, 아이템은 능력껏 얻을 수 있는 대로만 뛰고 있습니다.</p>
+		<p>테런 캐릭터 연성 커플링 지뢰 없습니다.</p>
+		<p class="small">
+			<b>TMI:</b><br>
+			- 컴퓨터 테일즈런너를 시작하게 된 계기는 다름 아닌 '<a href="https://namu.wiki/w/%ED%85%8C%EC%9D%BC%EC%A6%88%EB%9F%B0%EB%84%88R">모바일 테일즈런너</a>가 재미 없어서'.(...)<br>
+			- 테런 가입일이 2018.03.28.이라고 찍혀 있는데 이상하게 이미 그 전에 끝난 꽃기사 이벤트맵을 뛴 기억이 있다.<br>
+			- 얼마 전에 테일즈북 커플과 가족 관계 딱 한 번 맺어봤으나 지금은 둘 다 있었는데요 없었습니다.<br>
+			- 모종의 이유로 인해 길드 생각이 없어져 길드에 가입하지 않고 무길드 솔플 활동 중.<br>
+			- 개인 팜에서 <a href="https://cafe.naver.com/talesrunners/2620082">단색배경 스크린숏 팜</a> 공간을 제공 중.<br>
+		</p>
+		
+		<h2>TETR.IO</h2>
+		<p><b>플레이어 닉네임: </b><a href="https://ch.tetr.io/u/strode" style="font-family: HUN; font-weight: bold;">STRODE</a> <img src="https://tetr.io/res/flags/kr.png" alt="Korea, Rpublic of" style="height: 15px; display: inline-block"></p>
+		<p><b>게임 플레이 시간: </b>2022년 2월 기준 470+ 시간</p>
+		<p><b>랭크:</b> 2022년 2월 기준 SS랭크, 22,000+ TR</p>
+		
+		<h2>외부 링크</h2>
+		<p>
+			<a href="https://blog.naver.com/josy1231"><img src="https://cdn.discordapp.com/attachments/707944758458318881/943145530362593310/Bl.svg" alt="네이버 블로그 아이콘" width="40px"><span class="small">(블로그)</span></a> |
+			<a href="https://www.youtube.com/channel/UC5yebA-4ETdwHKme0jpkgkQ"><img src="https://cdn.discordapp.com/attachments/707944758458318881/943144245009743912/1.svg" alt="" width="40px"><span class="small">(유튜브 본채널)</span></a> |
+			<a href="https://www.youtube.com/channel/UCsKpC-IJmyd5S0CB6Yf_eQw"><img src="https://cdn.discordapp.com/attachments/707944758458318881/943144245009743912/1.svg" alt="" width="40px"><span class="small">(유튜브 그림채널)</span></a> |
+			<a href="https://www.youtube.com/channel/UC6eoJE3SysVwf4Ok-g9CiRg"><img src="https://cdn.discordapp.com/attachments/707944758458318881/943144245009743912/1.svg" alt="" width="40px"><span class="small">(유튜브 게임채널)</span></a> |
+			<a href="https://www.pixiv.net/users/19941195"><img src="https://cdn.discordapp.com/attachments/707944758458318881/943145327807070268/Px.svg" alt="" width="40px"><span class="small">(픽시브)</span></a>
+		</p>
+		
+		<h2>기타 TMI</h2>
+		<p>마인크래프트 닉네임과 트위터, 트위치 아이디로 사용하고 있는 <span style="font-feature-settings: 'zero'">Strode0496</span>의 '0496'은<br>특별한 의미는 없고 그냥 디스코드 태그로 배정된 네 자리 수를 고정으로 삼은 것입니다.</p>
+<!--
+		<p>
+			<b>다룰 줄 아는 프로그램(2020년 2월 기준): </b><img src="https://w.namu.la/s/8f988e4dfbb027edbbe00b9e4dcf82e0142e88e6536b16cd2d3e3979eed97251c513d9f1810e1847aca8f4edc892218e0612bbbeb16890225f58a186c586e831fdf2b9eff6a0d6c239477dcfe00571dda3cd6cca782294277352797ccf0985ab" alt="어도비 포토샵" width="40px"> <img src="https://w.namu.la/s/9ca939a6be75070c4611c15355ab2f9a715206087a94524e07f90f873a76ef87608d932c1e32c8d6b58941aaf48700b9300c0fc9f200260b18e8c2838a0b38ae4cc98bb0d50f3f5b7c8885809f8499595e9e000ac2c79a50b1184bea671871ac" alt="어도비 프레스코" width="40px"> <img src="https://w.namu.la/s/4af15de7dee7bb429c683dc9c6ef5b6e4d99a08bb8eee5abe7a8c26f55ce895ece9587fd564b1e30a219deac15f8eb7df1c8fc64b1009e08a962773f73dafcf59791557b605f0e0cc6334c323cd390ef7ce7f40dc18edad9332452b07c6b66a2" alt="어도비 일러스트레이터" width="40px"> <img src="https://w.namu.la/s/00f5fa2e13325078327af4cc41ced8efbee04d7279bfbf03c200716ee76e999ad8c8fa3d3537b93f1a2e11a056e921196df5a1b1d111564ca5bda68b8ab322b2cdafb3fec194fbfaa84f77e832dca95044bbb1c1c7358ed4a92f1b6501148e1b" alt="어도비 드림위버" width="40px"> <img src="https://w.namu.la/s/4502f1afe0418976068fc2d59f71df30c97b3ff44279536168aacf05f1e39621cd5f0bee677d717c136e8c627d0862c1541e1971c9d49fbe056b654b289ce14d32bbb2f158875d0680e82434066a66bc1dcdfcacebe8e52099e1bc5b96d8d546" alt="어도비 프리미어 프로" width="40px"> <img src="https://phinf.pstatic.net/memo/20220202_47/16437351248369i1aI_PNG/1643735145145.png?type=w740" alt="CLIP STUDIO PAINT" width="40px"> <img src="https://play-lh.googleusercontent.com/5Du3IBEBFz3WUUmgM6azp-dG93dif0iDbDHOIkiWXqBC2lXnSuwG5gVOb0CUcFaWgvsH" alt="Medibang Paint Pro" width="40px"> <img src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_powerpoint_icon_130245.png" alt="Powerpoint" width="40px"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Open_Broadcaster_Software_Logo.png/1024px-Open_Broadcaster_Software_Logo.png" alt="OBS Studio" width="40px"> <img src="https://ww.namu.la/s/1d9992bd9b0a104dcb24b560117a99f97eec6ae84ad6f2baed705204322e841444da026faa253afd870704b2ec7d0d21b5f45db7e5b5285fa442090542d9cc52316ce37368c1035b68f7821a08b433780c1d1ffa145c18ae0d17e1595964ee7d" alt="Medibang Paint Pro" width="40px"> <img src="https://w.namu.la/s/9238f88c599da52dbf2ace7b8e1e8e0ea2c583958297295bca3f5b3d028fe7b35c490886badedd8250107ff683a962e4ad05fd1c73ea8e6d399f472048f07a1049959bc7335d583e4e7f660a0b718490" alt="한컴오피스 한글" width="40px"><br>
+			<b>다룰 수는 있지만 아직 뉴비인 프로그램(2020년 2월 기준): </b><img src="https://w.namu.la/s/eab6852d8cd41bd2c43b87ae1a78c0cd00949d314b1dbaedfc6c04004cfcde934af8d626c57e0d1f2bf770e9ef49aef6cff99ca2c8810fce3c32ee7c72255a8f669538dd8960e344b55471dfcc8ff07fa26441b504dc57ab94325c9bf3bfc17f" alt="어도비 애프터 이펙트" width="40px"> <img src="https://w.namu.la/s/81c7120f9f08f561c3b7dcc182c5081b27e27a8f5aeaf4b7a48da950ec65bdcb724c82bfe33b00713d7836d7106916da3ffc7796876437141b40112485f93b594504aebab8ef185c0388497e7a63ebd4b4dd252df3c483a133582429e8acca0f" alt="어도비 인디자인" width="40px"> <img src="https://phinf.pstatic.net/memo/20220202_109/1643734899088eKo1p_PNG/1643734919420.png?type=w740" alt="3ds Max" width="40px"> <img src="https://phinf.pstatic.net/memo/20220202_101/1643735288119yDtxE_PNG/1643735308434.png?type=w740" alt="Live2D Cubism" width="40px"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/826px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" alt="Excel" width="40px">
+		</p>
+-->
+		
+		<div style="width: 100px; height: 300px;"></div>
+		
+	</div>
+		
+</body>
+</html>
